@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>DRUMKIT BOI</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <div class="all-keys">
+
+      <div class="key" id="keyA">
+        A
+      </div>
+
+      <div class="key" id="keyS">
+        S
+      </div>
+
+      <div class="key" id="keyD">
+        D
+      </div>
+
+
+    </div>
+
+    <audio src="audio/CYCdh_Crash-03.mp3" id="crash">
+    <audio src="audio/CYCdh_ElecK01-Kick02.mp3" id="kick">
+    <audio src="audio/CYCdh_K4-Snr05.mp3" id="snare">
+
+    </audio>
+  </body>
+
+  <script type="text/javascript">
+  let selectedKey = null;
+  document.addEventListener('keydown', (event) => {
+    const keyName = event.key;
+    let selectedAudio = null;
+
+    if(event.keyCode === 65) {
+      selectedAudio = document.getElementById("crash");
+      selectedKey = document.getElementById("keyA");
+    } else if (event.keyCode === 83) {
+      selectedAudio = document.getElementById("kick");
+      selectedKey = document.getElementById("keyS");
+    } else if (event.keyCode === 68) {
+      selectedAudio = document.getElementById("snare");
+      selectedKey = document.getElementById("keyD");
+    }
+
+    selectedKey.classList.add("key-pressed");
+    selectedAudio.currentTime = 0;
+    selectedAudio.play();
+  });
+
+  function removeTransition(e) {
+    this.classList.remove('key-pressed');
+  }
+
+
+  //for each key, an event listener is added
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition))
+
+  //the way I did it here didn't work that well because if you press the keys too quickly
+  //you would skip removing the class of one of the keys
+
+  // document.addEventListener('transitionend', (event) => {
+  //   selectedKey.classList.remove("key-pressed");
+  // })
+
+  </script>
+</html>
