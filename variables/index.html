@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h2>CSS variables light work</h2>
+
+    <div class="controls">
+      <label for="spacing">Spacing:</label>
+      <input type="range" name="spacing" min="10" max="200" value="100" data-sizing="px">
+
+      <label for="blur">Blur: </label>
+      <input type="range" name="blur" value="10" min="0" max="25" data-sizing="px">
+
+      <label for="base">Base Color</label>
+      <input type="color" name="base" value="#ffc600">
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1505881502353-a1986add3762?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=79770836c467adb5a78c392855fb1557&auto=format&fit=crop&w=2524&q=80" alt="picture">
+
+    <script type="text/javascript">
+      const inputs = document.querySelectorAll('.controls input');
+
+      function handleUpdate() {
+        const suffix = this.dataset.sizing || "";
+        document.documentElement.style.setProperty(`--${ this.name }`, this.value + suffix)
+      }
+
+      inputs.forEach(input => input.addEventListener('change', handleUpdate));
+
+      inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+    </script>
+
+  </body>
+</html>
