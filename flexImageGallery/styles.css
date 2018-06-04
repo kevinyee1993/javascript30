@@ -1,0 +1,66 @@
+.panels {
+  display: flex;
+  min-height: 100vh;
+  transition: 1s;
+}
+
+.panel {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition:
+    font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+    flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+    background 0.2s;
+}
+
+.panel > * {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
+  align-items: center;
+  transition: 0.7s;
+}
+
+.panel > *:first-child {
+  transform: translateY(-100%);
+}
+
+.panel.open-active > *:first-child {
+  transform: translateY(0);
+}
+
+.panel > *:last-child {
+  transform: translateY(100%);
+}
+
+.panel.open-active > *:last-child {
+  transform: translateY(0);
+}
+
+.panel.open {
+  font: 40px;
+  flex: 5;
+}
+
+.panel1 {
+  background-image: url("https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/All-about-puppies--Cesar%E2%80%99s-tips%2C-tricks-and-advice.jpg?itok=bi9xUvwe");
+}
+
+.panel2 {
+  background-image: url("https://www.rd.com/wp-content/uploads/2018/02/19_Adorable-Puppy-Pictures-that-Will-Make-You-Melt_391191067_chris_tina-760x506.jpg");
+}
+
+.panel3 {
+  background-image: url("https://i.kinja-img.com/gawker-media/image/upload/s--qhWhRp3q--/c_scale,f_auto,fl_progressive,q_80,w_800/cqqvnmhbgzbot7ylzeuj.jpg");
+}
+
+.panel4 {
+  background-image: url("http://allaboutpuppiesflorida.com/wp-content/uploads/2012/08/shiba-inu-puppy.jpg");
+}
+
+.panel5 {
+  background-image: url("https://s.abcnews.com/images/Lifestyle/puppy-ht-3-er-170907_4x3_992.jpg");
+}
