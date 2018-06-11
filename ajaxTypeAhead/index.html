@@ -14,8 +14,63 @@
       <li>or a state</li>
     </ul>
   </form>
+
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+const cities = [];
+
+// returns a promise
+fetch(endpoint)
+  .then(results => results.json())
+
+  // ...data takes an array and spreads it out so that
+  // when you push it into another array, it gets all
+  // the elements individually
+  .then( data => cities.push(...data) );
+
+  function findMatches(wordToMatch, cities) {
+
+    return cities.filter(place => {
+      let regex = new RegExp(wordToMatch, 'gi');
+      return place.city.match(regex) || place.state.match(regex);
+    });
+  }
+
+  function displayMatches() {
+    // this is whatever called this function
+    // in this case, it is the search element which calls the
+    // function after a change or keyup event is triggered
+
+    const matchArray = findMatches(this.value, cities);
+    const html = matchArray.map(place => {
+      // if you want to return html, just put everything in backticks
+      // and if you wanna use a variable in there, just interpolate
+      // using ${ } and w/e js var inside of there
+      return `
+        <li>
+          <span class="name">${ place.city }, ${ place.state }</span>
+          <span class="population">${ place.population }</span>
+        </li>
+      `;
+    }).join(''); //returns an array but you want a string so join it
+
+    suggestions.innerHTML = html;
+  }
+
+  // document.querySelector('.class')
+  // document.querySelectorAll('.class')
+  // just typing so I remember the syntax of it
+  const searchInput = document.querySelector('.search');
+  const suggestions = document.querySelector('.suggestions');
+
+  // can add 2 event listeners to one thing
+  // change changes the stuff after you click away
+  // adding keyup makes it so that whenever you lift off a key it triggers
+  searchInput.addEventListener('change', displayMatches);
+  searchInput.addEventListener('keyup', displayMatches);
+
 </script>
+
   </body>
 </html>
