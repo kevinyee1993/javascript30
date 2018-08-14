@@ -1,0 +1,16 @@
+body {
+  background-color: lightblue;
+}
+
+.item {
+  display: flex;
+  border: 1px solid grey;
+  background-color: lightyellow;
+}
+
+input {
+  margin: auto 0;
+  margin-right: 10px;
+  margin-left: 10px;
+
+}
